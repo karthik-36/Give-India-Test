@@ -8,7 +8,7 @@ const account = new mongoose.Schema({
   type: {
     type: String,
     enum: ['Savings', 'Current', 'BasicSavings'],
-    required: " remaining calls required "
+    required: " type of account required "
   }
 });
 
