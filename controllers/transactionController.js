@@ -33,7 +33,7 @@ router.post("/transfer", async (req, res) => {
           }
         }
 
-        await fromAccount.save();
+        await fromAccount.save(); //uncommited write for sender
 
       } else {
         errMessage.push(constants.ACCOUNT_DOES_NOT_EXIST(req.body.toAccountId)); // sender account not found.
@@ -54,7 +54,7 @@ router.post("/transfer", async (req, res) => {
             break;
           }
         }
-        await toAccount.save();
+        await toAccount.save(); //uncommited write for reciver
       } else {
         errMessage.push(constants.ACCOUNT_DOES_NOT_EXIST(req.body.toAccountId)); // reciver account not found.
       }
