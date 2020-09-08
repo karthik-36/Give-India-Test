@@ -7,14 +7,18 @@ const Users = mongoose.model("users");
 
 router.post("/transfer", async (req, res) => {
 
-  if (req.body.fromAccountId == req.body.toAccountId) {
+  if (req.body.amount <= 0) { //check if amount less than or equal to zero.
+    res.json({
+      error: constants.INVALID_AMOUNT
+    });
+  } else if (req.body.fromAccountId == req.body.toAccountId) { //check if sender and reciver have the same accounts.
     res.json({
       error: constants.SAME_ACCOUNT
     });
   } else {
     let errMessage = [];
     const session = await mongoose.startSession();
-    session.startTransaction();
+    session.startTransaction(); // Start transaction.
     try { //find sender account
       let fromAccount = await Users.findOne({
         'accounts._id': req.body.fromAccountId
@@ -28,7 +32,7 @@ router.post("/transfer", async (req, res) => {
               fromAccount.accounts[i].amount -= req.body.amount; //deduct amount from sender.
             }
           }
-          if (fromAccount.accounts[i]._id == req.body.toAccountId) { //check if owner of account is same.
+          if (fromAccount.accounts[i]._id == req.body.toAccountId) { //check if sender account and reciver account have the same owner
             errMessage.push(constants.SAME_USER);
           }
         }
