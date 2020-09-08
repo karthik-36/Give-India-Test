@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
-const sanitize = require("mongo-sanitize");
 const constants = require('../responses/constants');
 const Users = mongoose.model("users");
 
@@ -17,6 +16,7 @@ router.post("/transfer", async (req, res) => {
     });
   } else {
     let errMessage = [];
+    let successMessage = {};
     const session = await mongoose.startSession();
     session.startTransaction(); // Start transaction.
     try { //find sender account
@@ -30,6 +30,7 @@ router.post("/transfer", async (req, res) => {
               errMessage.push(constants.OVERDRAW);
             } else {
               fromAccount.accounts[i].amount -= req.body.amount; //deduct amount from sender.
+              successMessage.newSrcBalance = fromAccount.accounts[i];
             }
           }
           if (fromAccount.accounts[i]._id == req.body.toAccountId) { //check if sender account and reciver account have the same owner
@@ -52,6 +53,7 @@ router.post("/transfer", async (req, res) => {
         for (let i = 0; i < toAccount.accounts.length; i++) {
           if (toAccount.accounts[i]._id == req.body.toAccountId) {
             toAccount.accounts[i].amount += req.body.amount; //add amount to reciver.
+            successMessage.newDestBalance = toAccount.accounts;
             if (toAccount.accounts[i].type == "BasicSavings" && toAccount.accounts[i].amount > constants.BASIC_LIMIT) { //check if basic limit has exceeded 50k rupees.
               errMessage.push(constants.EXCEED_BASIC);
             }
@@ -65,9 +67,8 @@ router.post("/transfer", async (req, res) => {
 
       if (errMessage.length == 0) {
         await session.commitTransaction(); // commit changes if everything is ok.
-        res.json({
-          message: constants.SUCCESS
-        })
+        successMessage.transferedAt = new Date();
+        res.json(successMessage)
       } else {
         await session.abortTransaction(); // discard changes if something goes wrong.
         res.status(400).json({
