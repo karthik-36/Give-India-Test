@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
-const sanitize = require("mongo-sanitize");
 const constants = require('../responses/constants');
 const Users = mongoose.model("users");
 
@@ -25,7 +24,7 @@ router.post("/addUser", (req, res) => {
 
 });
 
-//> db.student.update( { "subjects" : "gkn" },{ $push: { "achieve": 95 } });
+
 router.post("/addAccount", (req, res) => {
 
   if (req.body.type == "BasicSavings" && req.body.amount > constants.BASIC_LIMIT) {

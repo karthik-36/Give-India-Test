@@ -15,6 +15,9 @@ router.post("/transfer", async (req, res) => {
       error: constants.SAME_ACCOUNT
     });
   } else {
+
+
+
     let errMessage = [];
     let successMessage = {};
     const session = await mongoose.startSession();
@@ -44,6 +47,12 @@ router.post("/transfer", async (req, res) => {
         errMessage.push(constants.ACCOUNT_DOES_NOT_EXIST(req.body.toAccountId)); // sender account not found.
       }
 
+
+
+
+
+
+
       //find reciver account
       let toAccount = await Users.findOne({
         'accounts._id': req.body.toAccountId
@@ -65,6 +74,10 @@ router.post("/transfer", async (req, res) => {
         errMessage.push(constants.ACCOUNT_DOES_NOT_EXIST(req.body.toAccountId)); // reciver account not found.
       }
 
+
+
+
+
       if (errMessage.length == 0) {
         await session.commitTransaction(); // commit changes if everything is ok.
         successMessage.transferedAt = new Date();
@@ -75,6 +88,9 @@ router.post("/transfer", async (req, res) => {
           error: errMessage.join("; ")
         })
       }
+
+
+
 
     } catch (error) {
       await session.abortTransaction(); // discard changes if something goes wrong.
