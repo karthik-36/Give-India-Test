@@ -16,8 +16,6 @@ router.post("/transfer", async (req, res) => {
     });
   } else {
 
-
-
     let errMessage = [];
     let successMessage = {};
     const session = await mongoose.startSession();
@@ -48,11 +46,6 @@ router.post("/transfer", async (req, res) => {
       }
 
 
-
-
-
-
-
       //find reciver account
       let toAccount = await Users.findOne({
         'accounts._id': req.body.toAccountId
@@ -75,9 +68,6 @@ router.post("/transfer", async (req, res) => {
       }
 
 
-
-
-
       if (errMessage.length == 0) {
         await session.commitTransaction(); // commit changes if everything is ok.
         successMessage.transferedAt = new Date();
@@ -90,8 +80,6 @@ router.post("/transfer", async (req, res) => {
       }
 
 
-
-
     } catch (error) {
       await session.abortTransaction(); // discard changes if something goes wrong.
       res.status(500).json({
@@ -102,7 +90,6 @@ router.post("/transfer", async (req, res) => {
     }
   }
 });
-
 
 
 module.exports = router;
