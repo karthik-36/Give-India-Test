@@ -1,0 +1,111 @@
+[{
+  "_id": {
+    "$oid": "5f566efd2df09f2b98382293"
+  },
+  "accounts": [
+    {
+      "_id": {
+        "$oid": "5f5680506ab427048c95c382"
+      },
+      "amount": 122000,
+      "type": "Savings"
+    },
+    {
+      "_id": {
+        "$oid": "5f5680626ab427048c95c383"
+      },
+      "amount": 9903030,
+      "type": "Savings"
+    },
+    {
+      "_id": {
+        "$oid": "5f5680a76ab427048c95c384"
+      },
+      "amount": 3000503,
+      "type": "BasicSavings"
+    },
+    {
+      "_id": {
+        "$oid": "5f568307d25cc7518c9658c4"
+      },
+      "amount": 300600,
+      "type": "Current"
+    }
+  ],
+  "username": "Karthik.rsingh@kone.com",
+  "password": "Welcome@54321",
+  "phone": "919840228436",
+  "address": "somewhere on earth",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f566faa629b1f5e4861b7da"
+  },
+  "accounts": [
+    {
+      "_id": {
+        "$oid": "5f567acbb9160611e43df571"
+      },
+      "amount": 696067194,
+      "type": "Current"
+    },
+    {
+      "_id": {
+        "$oid": "5f567d0cb9160611e43df572"
+      },
+      "amount": 102000,
+      "type": "Savings"
+    },
+    {
+      "_id": {
+        "$oid": "5f57bef0d50e7564181bedf4"
+      },
+      "amount": 300000,
+      "type": "Current"
+    }
+  ],
+  "username": "Rahul2Agarwal@kone.com",
+  "password": "Welcome@54321",
+  "phone": "919840228634",
+  "address": "somewhere else on earth",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5f570c2b845ebd04f80da8f5"
+  },
+  "username": "aryan123@kone.com",
+  "password": "Welcome@54321",
+  "phone": "919840228436",
+  "address": "somewhere on earth",
+  "accounts": [
+    {
+      "_id": {
+        "$oid": "5f57ae1bb2e5be4dd8b986f5"
+      },
+      "amount": 300000,
+      "type": "Current"
+    },
+    {
+      "_id": {
+        "$oid": "5f57ae29b2e5be4dd8b986f6"
+      },
+      "amount": 55000,
+      "type": "Savings"
+    },
+    {
+      "_id": {
+        "$oid": "5f57ae31b2e5be4dd8b986f7"
+      },
+      "amount": 55000,
+      "type": "Current"
+    },
+    {
+      "_id": {
+        "$oid": "5f57b4a361d7a75594985650"
+      },
+      "amount": 55000,
+      "type": "Current"
+    }
+  ],
+  "__v": 0
+}]
